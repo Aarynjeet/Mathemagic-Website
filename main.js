@@ -6,6 +6,7 @@
   const setOpen = (open) => {
     menu.classList.toggle("isOpen", open);
     toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   };
 
   toggle.addEventListener("click", () => {
@@ -21,5 +22,9 @@
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") setOpen(false);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 640) setOpen(false);
   });
 })();
